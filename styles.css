@@ -1,17 +1,66 @@
 body {
+  background-size: cover; /* Agar gambar menutupi seluruh latar belakang */
+  background-position: center;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 0;
+}
+body.light-theme {
   background-color: #f0f0f0;
-  font-family: Arial, sans-serif;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
 }
 
+/* Tema Dark */
+body.dark-theme {
+  background-color: #1e1e1e;
+  color: #fff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Tombol Toggle Theme */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: inherit;
+}
+
+.calculator-container {
+  perspective: 1000px; /* Memberikan efek perspektif 3D */
+}
+
+/* Kalkulator */
 .calculator {
-  background-color: #333;
+  background: #333;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3),
+    /* Bayangan luar */ inset 0px -5px 10px rgba(0, 0, 0, 0.5),
+    /* Bayangan dalam untuk efek kedalaman */ inset 0px 5px 10px
+      rgba(255, 255, 255, 0.1); /* Highlight dalam */
+  transform: rotateX(10deg); /* Memberikan sudut 3D */
+  transition: transform 0.3s ease;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 #display {
