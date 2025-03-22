@@ -1,3 +1,4 @@
+/* Gaya dasar */
 body {
   background-size: cover; /* Agar gambar menutupi seluruh latar belakang */
   background-position: center;
@@ -8,18 +9,19 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-}
-body.light-theme {
-  background-color: #f0f0f0;
-  color: #333;
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Tema Dark */
+/* Light Theme */
+body.light-theme {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* Dark Theme */
 body.dark-theme {
   background-color: #1e1e1e;
   color: #fff;
-  transition: background-color 0.3s, color 0.3s;
 }
 
 /* Tombol Toggle Theme */
@@ -34,8 +36,12 @@ body.dark-theme {
   color: inherit;
 }
 
+/* Container Kalkulator */
 .calculator-container {
   perspective: 1000px; /* Memberikan efek perspektif 3D */
+  width: 100%;
+  max-width: 400px; /* Lebar maksimum untuk desktop */
+  padding: 20px;
 }
 
 /* Kalkulator */
@@ -44,25 +50,13 @@ body.dark-theme {
   padding: 20px;
   border-radius: 20px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3),
-    /* Bayangan luar */ inset 0px -5px 10px rgba(0, 0, 0, 0.5),
-    /* Bayangan dalam untuk efek kedalaman */ inset 0px 5px 10px
-      rgba(255, 255, 255, 0.1); /* Highlight dalam */
+    inset 0px -5px 10px rgba(0, 0, 0, 0.5),
+    inset 0px 5px 10px rgba(255, 255, 255, 0.1);
   transform: rotateX(10deg); /* Memberikan sudut 3D */
   transition: transform 0.3s ease;
 }
 
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
+/* Layar Kalkulator */
 #display {
   width: 100%;
   height: 50px;
@@ -76,6 +70,7 @@ body.dark-theme {
   color: #fff;
 }
 
+/* Tombol Kalkulator */
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -90,17 +85,68 @@ button {
   background-color: #555;
   color: #fff;
   cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
 button:hover {
   background-color: #666;
 }
 
+button:active {
+  transform: scale(0.95); /* Efek tekan tombol */
+}
+
+/* Tombol Equals (=) */
 .equals {
   grid-column: span 1;
-  background-color: #f39c12;
+  background-color: #29db2c;
 }
 
 .equals:hover {
-  background-color: #e67e22;
+  background-color: #26851f;
+}
+
+/* Tombol DEL */
+button:nth-child(2) {
+  background-color: #ff4444;
+}
+
+button:nth-child(2):hover {
+  background-color: #cc0000;
+}
+
+/* Tombol Persen */
+button:nth-child(18) {
+  background-color: #5b605b;
+}
+
+button:nth-child(18):hover {
+  background-color: #706969;
+}
+
+/* Responsif untuk layar kecil (mobile) */
+@media (max-width: 600px) {
+  .calculator-container {
+    padding: 10px;
+    perspective: 500px; /* Kurangi perspektif untuk mobile */
+  }
+
+  .calculator {
+    transform: rotateX(10deg); /* Pertahankan efek 3D di mobile */
+    padding: 15px;
+  }
+
+  #display {
+    font-size: 1.2rem;
+    height: 50px;
+  }
+
+  button {
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  .buttons {
+    gap: 5px;
+  }
 }
